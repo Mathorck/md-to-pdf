@@ -5,10 +5,10 @@ RUN apt-get update && \
 
 RUN mkdir -p /usr/share/templates
 
-COPY template.tex /usr/share/templates/the_template.tex
+COPY eisvogel.latex /usr/share/templates/the_template.latex
 
 WORKDIR /data
 
-ENTRYPOINT ["pandoc", "--template=/usr/share/templates/the_template.tex", "--pdf-engine=lualatex"]
+ENTRYPOINT ["pandoc", "--template=/usr/share/templates/the_template.latex", "--pdf-engine=lualatex"]
 
 CMD ["--help"]
