@@ -12,6 +12,6 @@ docker build -t mathorck/md-to-pdf .
 
 use the files in the example folder
 
-´´´
+```
 docker run -v ${PWD}:/data mathorck/md-to-pdf -o bin/result.pdf
-´´´
+```
