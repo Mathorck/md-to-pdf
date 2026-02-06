@@ -9,7 +9,9 @@ header-center: "Documentation"
 titlepage-background: "assets/template/frontpage.png"
 page-background: "assets/template/page.png"
 titlepage: true
+toc: true
 toc-own-page: true
+toc-title: "Table des matières"
 page-background-opacity: 1.0
 titlepage-rule-height: 0.0
 mainfont: "Inter"
