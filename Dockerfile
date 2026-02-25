@@ -3,7 +3,7 @@ FROM debian:stable
 RUN apt-get update && \
     apt-get install -y \
     texlive \
-	texlive-lang-french \
+    texlive-lang-french \
     texlive-latex-extra \
     texlive-fonts-extra \
     texlive-luatex \

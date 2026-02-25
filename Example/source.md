@@ -16,6 +16,9 @@ page-background-opacity: 1.0
 titlepage-rule-height: 0.0
 mainfont: "Inter"
 monofont: "JetBrains Mono"
+header-includes:
+  - |
+    \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 ...
 
 # SUPER TITRE
