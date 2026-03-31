@@ -15,3 +15,9 @@ use the files in the example folder
 ```
 docker run -v ${PWD}:/data mathorck/md-to-pdf -o bin/result.pdf
 ```
+
+# Credits
+
+[@MrAresInFlesh](https://github.com/MrAresInFlesh) - Who learn me how to use it
+
+[@enhuiz](https://github.com/enhuiz) - template creator
