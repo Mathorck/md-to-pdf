@@ -1,6 +1,6 @@
 %%
-% Copyright (c) 2017 - 2025, Pascal Wagler;
-% Copyright (c) 2014 - 2025, John MacFarlane
+% Copyright (c) 2017 - 2026, Pascal Wagler;
+% Copyright (c) 2014 - 2026, John MacFarlane
 %
 % All rights reserved.
 %
@@ -39,6 +39,26 @@
 % For usage information and examples visit the official GitHub page:
 % https://github.com/Wandmalfarbe/pandoc-latex-template
 %%
+$--
+$-- PDF standard support (PDF/A, PDF/UA, PDF/X)
+$-- Requires LuaLaTeX and recent LaTeX (2023+)
+$--
+$if(pdfstandard)$
+\DocumentMetadata{
+$if(pdfstandard.version)$
+  pdfversion=$pdfstandard.version$,
+$endif$
+$if(pdfstandard.standards)$
+  pdfstandard={$for(pdfstandard.standards)$$it$$sep$,$endfor$},
+$endif$
+$if(pdfstandard.tagging)$
+  tagging=on,
+$endif$
+$if(lang)$
+  lang=$lang$,
+$endif$
+  xmp=true}
+$endif$
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
@@ -643,47 +663,20 @@ $endif$
 \item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
 
 %
-% Source Sans Pro as the default font family
+% Source Sans as the default font family
 % Source Code Pro for monospace text
-%
-% 'default' option sets the default
-% font family to Source Sans Pro, not \sfdefault.
-%
-% Note that the font has been officially renamed to `Source Sans 3`, and
-% the version provided by the `sourcesanspro` package is slightly outdated.
-% You can install the newer version locally and use it, for example, with
-% `mainfont: "Source Sans 3"` in the YAML metadata (requires XeTeX or LuaTeX).
 %
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   $if(fontfamily)$
   $else$
-  \usepackage[default]{sourcesanspro}
+  \usepackage[default]{sourcesans}
   \usepackage{sourcecodepro}
   $endif$
-\else % if not pdftex
+\else % if not pdftex (e.g. lualatex)
   $if(mainfont)$
   $else$
-  \usepackage[default]{sourcesanspro}
+  \usepackage[default]{sourcesans}
   \usepackage{sourcecodepro}
-
-  % XeLaTeX specific adjustments for straight quotes: https://tex.stackexchange.com/a/354887
-  % This issue is already fixed (see https://github.com/silkeh/latex-sourcecodepro/pull/5) but the
-  % fix is still unreleased.
-  % TODO: Remove this workaround when the new version of sourcecodepro is released on CTAN.
-  \ifxetex
-    \makeatletter
-    \defaultfontfeatures[\ttfamily]
-      { Numbers   = \sourcecodepro@figurestyle,
-        Scale     = \SourceCodePro@scale,
-        Extension = .otf }
-    \setmonofont
-      [ UprightFont    = *-\sourcecodepro@regstyle,
-        ItalicFont     = *-\sourcecodepro@regstyle It,
-        BoldFont       = *-\sourcecodepro@boldstyle,
-        BoldItalicFont = *-\sourcecodepro@boldstyle It ]
-      {SourceCodePro}
-    \makeatother
-  \fi
   $endif$
 \fi
 
@@ -731,13 +724,6 @@ $if(table-use-row-colors)$
 \appto{\endfirsthead}{\showrowcolors}{}{}
 $endif$
 $endif$
-
-%
-% remove paragraph indentation
-%
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
 
 %
 %

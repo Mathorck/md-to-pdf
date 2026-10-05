@@ -18,6 +18,7 @@ mainfont: "Inter"
 monofont: "JetBrains Mono"
 header-includes:
   - |
+    \usepackage{graphicx}
     \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 ...
 
